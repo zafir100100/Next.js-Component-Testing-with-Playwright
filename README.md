@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Component Testing with Playwright
 
-## Getting Started
+A Next.js application featuring a Login component that uses React hooks, SweetAlert2 for notifications, and Bootstrap for styling. The app is configured to redirect to the `/login` route by default with lazy loading for optimal performance. Component tests are written with Playwright Component Testing and use both an HTML and Monocart reporter for test reports.
 
-First, run the development server:
+## Video
+
+https://github.com/user-attachments/assets/c1b5f961-310d-49c9-bb43-a47231f4128f
+
+## Running the App
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+To start the Next.js development server with Turbopack (if configured):
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app will open at [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Now naviagte to login page by [http://localhost:3000/login](http://localhost:3000/login)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Testing
 
-## Learn More
+This project uses Playwright Component Testing to test the Login component directly.
 
-To learn more about Next.js, take a look at the following resources:
+To run tests:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npx run test-ct
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+To view test report:
 
-## Deploy on Vercel
+```bash
+npm run monocart-report
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Test Scenario
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The following scenarios are covered by the component tests:
+
+1. **Render Test:**
+   - The Login form should render correctly.
+   - The username textbox, password textbox, and login button must be visible.
+
+2. **Initial State:**
+   - The login button is disabled when both fields are empty.
+
+3. **Input State:**
+   - Filling in the username and password fields enables the login button.
+   - The inputs update their values accordingly.
+
+4. **Invalid Credentials:**
+   - Submitting invalid credentials shows an error alert via SweetAlert2.
+   - The error alert contains the text "Invalid username or password" (or similar).
+
+5. **Valid Credentials:**
+   - Submitting correct credentials shows a success alert via SweetAlert2.
+   - The success alert contains the text "Login successful!".
+
+## Screenshot (Application)
+
+![image](https://github.com/user-attachments/assets/46c0da3b-f972-423b-995c-bce69c0dda1a)
+
+## Screenshot (Monocart Report)
+
+![image](https://github.com/user-attachments/assets/a7b4162e-bdf1-41af-9832-02efc68233a9)
+
